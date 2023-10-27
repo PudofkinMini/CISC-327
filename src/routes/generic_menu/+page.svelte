@@ -21,6 +21,7 @@
         console.log("menu item pushed")
     }
 
+    // Function to add a particular item to a cart and give it an in-cart id
     const addToCart = (item) => {
         item.cartID = nextItemId;
         cart.push(item)
@@ -30,14 +31,15 @@
         return
     }
 
+    
     let showCart = false;
-    let viewCartClass = "bg-[#266DD3] text-white font-bold duration-300 h-[60vh] z-[50] fixed top-[10vh] left-[100vw] rounded-md w-[25vw] overflow-y-scroll"
+    let viewCartClass = "p-5 bg-[#266DD3] text-white font-bold duration-300 h-[60vh] z-[50] fixed top-[10vh] left-[100vw] rounded-md w-[25vw] overflow-y-scroll"
     const viewCartHandler = () => {
         if (!showCart) {
-            viewCartClass = "bg-[#266DD3] text-white font-bold duration-300 h-[60vh] z-[50] fixed top-[10vh] -translate-x-[26vw] left-[100vw] rounded-md w-[25vw] overflow-y-scroll"
+            viewCartClass = "p-5 bg-[#266DD3] text-white font-bold duration-300 h-[60vh] z-[50] fixed top-[10vh] -translate-x-[26vw] left-[100vw] rounded-md w-[25vw] overflow-y-scroll"
         }
         else {
-            viewCartClass = "bg-[#266DD3] text-white font-bold duration-300 h-[60vh] z-[50] fixed top-[10vh] left-[100vw] rounded-md w-[25vw] overflow-y-scroll"
+            viewCartClass = "p-5 bg-[#266DD3] text-white font-bold duration-300 h-[60vh] z-[50] fixed top-[10vh] left-[100vw] rounded-md w-[25vw] overflow-y-scroll"
         }
         showCart = !showCart
     }
@@ -48,7 +50,7 @@
     {#key itemCount}
     <ViewCart bind:itemCount={itemCount} bind:cart={cart} className={viewCartClass}></ViewCart>
     {/key}
-    <div class="text-6xl font-bold text-[#344055] py-10">Pick your items</div>
+    <div class="text-6xl font-bold py-10">Pick your items.</div>
     <button on:click={viewCartHandler} class="active:scale-[0.95] fixed bottom-10 right-0 w-[25vw] h-[15vh] rounded-md bg-[#266DD3] text-white text-4xl z-[20]"><b>View 🛒</b> ({itemCount})</button>
     <div class="grid grid-cols-7 place-items-center align-center max-w-[100vw] no-scrollbar">
         {#each menuItems as item}

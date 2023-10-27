@@ -7,10 +7,10 @@
 </script>
 
 <a href="/generic_menu">
-    <div class="p-3 text-center font-bold text-white rounded-md flex flex-col items-center bg-[#888098] duration-[1s]">
-        <div class="text-xl text-[#344055]">{name}</div>
-        <img src={image} alt="Not available" class="z-0 h-[12vh] opacity-80 rounded-md scale-[0.8]">
-        <div class="text-xl text-[#344055]">{price}</div>
+    <div class="text-center font-bold rounded-md flex flex-col items-center w-[20vw] h-[40vh] py-10 shadow-md my-5 duration-[0.2s] hover:bg-[#266DD3]/40">
+        <div class="text-xl break-normal px-10">{name}</div>
+        <img src={image} alt="Not available" class="z-0 h-[20vh] object-contain opacity-80 rounded-md scale-[0.8]">
+        <div class="text-xl">{price}</div>
     
     </div>
 </a>

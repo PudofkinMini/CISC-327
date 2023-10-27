@@ -22,14 +22,14 @@
 
 </script>
 
-<div class="bg-[#888098]/70 h-[100vh] relative overflow-x-hidden no-scrollbar">
+<div class="h-[100vh] relative overflow-x-hidden no-scrollbar">
     <Navbar></Navbar>
     <!-- <RestaurantFeedItem category="funniness"></RestaurantFeedItem> -->
-    <form class="bg-[#888098] w-full flex flex-row p-5 gap-4 items-center">
-        <input bind:value={searchValue} type="text" placeholder="Search restaurants" class="p-3 h-16 text-2xl bg-[#344055] rounded-md text-white">
-        <button on:click={searchBtnHandler} type="submit" class="font-bold text-2xl bg-[#266DD3] h-16 px-5 rounded-md text-white active:scale-[0.95] mr-auto">Search</button>
-        <div class="text-2xl text-[#344055] font-bold">Category:</div>
-        <select bind:value={categoryValue} name="categories" id="" placeholder="Category" class="text-left bg-[#344055] w-fit h-16 px-5 text-[white] text-2xl rounded-md">
+    <form class="w-full flex flex-row p-5 gap-4 items-center">
+        <input bind:value={searchValue} type="text" placeholder="Search restaurants" class="p-3 h-16 text-2xl rounded-md shadow-md">
+        <button on:click={searchBtnHandler} type="submit" class="font-bold text-2xl bg-[#266DD3] h-16 px-5 rounded-md text-white active:scale-[0.95] mr-auto hover:shadow-lg">Search</button>
+        <div class="text-2xl font-bold">Category:</div>
+        <select bind:value={categoryValue} name="categories" id="" placeholder="Category" class="text-left w-fit h-16 px-5 hover:shadow-lg text-2xl rounded-md shadow-md">
             <option value="Any" class="text-xl"></option>
             <option value="Italian" class="text-xl">Italian</option>
             <option value="Chinese" class="text-xl">Chinese</option>
@@ -41,15 +41,15 @@
             <option value="Fast Food" class="text-xl">Fast Food</option>
             <option value="Comfort Food" class="text-xl">Comfort Food</option>
         </select>
-        <div class="text-2xl text-[#344055] font-bold ml-10">Price:</div>
-        <select bind:value={priceValue} name="price" id="" placeholder="Price" class="text-left bg-[#344055] w-fit h-16 px-5 text-[white] text-2xl rounded-md">
+        <div class="text-2xl font-bold ml-10">Price:</div>
+        <select bind:value={priceValue} name="price" id="" placeholder="Price" class="text-left w-fit h-16 px-5 text-2xl rounded-md shadow-md hover:shadow-lg">
             <option value="Any" class="text-xl"></option>
             <option value="$" class="text-xl">$</option>
             <option value="$$" class="text-xl">$$</option>
             <option value="$$$" class="text-xl">$$$</option>
         </select>
     </form>
-    <div class="bg-pink-300">
+    <div class="flex flex-col gap-y-10">
         {#each categoriesList as cat}
             {#if (cat == categoryValue || categoryValue == "Any")}
                 <RestaurantFeed price={priceValue} category={cat} bind:nameFilter={searchValue}></RestaurantFeed>
@@ -85,7 +85,7 @@
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #344055;
+    background: black;
     border-radius: 5px;
 }
  
