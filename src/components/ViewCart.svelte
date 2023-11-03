@@ -1,6 +1,7 @@
 <script>
     import { orders, userid } from "/src/store.js"
-
+    import { page } from '$app/stores';
+    let restaurantid = $page.params.restaurantid;
     export let cart;
     export let itemCount;
     export let className;
@@ -15,7 +16,7 @@
     const checkOutHandler = () => {
         //orders.set(cart)
         //userid.set(0)
-        window.location.href = "/place_order"
+        window.location.href = `/menu/${restaurantid}/checkout`
     }
 </script>
 

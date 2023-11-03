@@ -33,6 +33,7 @@
 
     // Search filters
     let searchValue = ""
+    let searchValue2 = ""
     let categoryValue = "Any"
     let priceValue = "Any"
 
@@ -42,6 +43,7 @@
         console.log(searchValue)
         console.log(categoryValue)
         console.log(priceValue)
+        searchValue2 = searchValue
     }
 
 
@@ -83,7 +85,7 @@
     <div class="flex flex-col gap-y-10">
         {#each categoriesList as cat}
             {#if (cat == categoryValue || categoryValue == "Any")}
-                <RestaurantFeed price={priceValue} category={cat} bind:nameFilter={searchValue}></RestaurantFeed>
+                <RestaurantFeed price={priceValue} category={cat} bind:nameFilter={searchValue2}></RestaurantFeed>
             {/if}
         {/each}
     </div>

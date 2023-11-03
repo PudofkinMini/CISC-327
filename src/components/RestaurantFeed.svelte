@@ -32,7 +32,7 @@
     <div class="flex flex-row gap-10 justify-spread group relative px-20 overflow-scroll overflow-y-hidden">
         <!-- <button class="w-16 bg-[#888098] text-4xl px-4 rounded-md absolute left-0 h-full z-10 opacity-80"> ⇦ </button> -->
         {#each restaurantFeeds as item}
-            {#if (price == "Any" || item.price == price)}  
+            {#if ((price == "Any" || item.price == price) && item.name.includes(nameFilter))}  
             <RestaurantFeedItem id={item.id} category={item.category} price={item.price} name="{item.name}" image="https://picsum.photos/300"></RestaurantFeedItem>
             {/if}
         {/each}

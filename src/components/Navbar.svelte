@@ -18,6 +18,6 @@
     <div class="flex flex-row gap-5 p-5">
         <a href="/home"><div class="hover:scale-[1.05]">Home</div></a>
         <a href="/profile"><div class="hover:scale-[1.05]">Profile</div></a>
-        <a href="/home"><div class="hover:scale-[1.05]">Orders</div></a>
+        <a href="/orders"><div class="hover:scale-[1.05]">Orders</div></a>
     </div>
 </div>
