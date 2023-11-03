@@ -1,4 +1,6 @@
 <script>
+  import Navbar from "../../components/Navbar.svelte";
+
     let user = {
       name: 'John Doe',
       telephone: '+1234567890',
@@ -22,7 +24,10 @@
       ],
     };
   </script>
-  
+
+
+<div class="overflow-x-hidden">
+  <Navbar></Navbar>
   <div class="p-4 max-w-lg mx-auto">
     <div class="bg-white shadow-md rounded-lg p-6">
       <div class="text-center">
@@ -57,3 +62,4 @@
       </div>
     </div>
   </div>
+</div>

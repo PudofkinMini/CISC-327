@@ -7,11 +7,11 @@
 </script>
 
 
-<div class="group w-[11vw] border-1 border-black rounded-md items-center align-items-center text-center my-10 p-5 relative flex flex-col shadow-md">
+<div class="group hover:shadow-xl hover:translate-y-[5px] duration-[0.3s] w-[11vw] border-1 border-black rounded-md items-center align-items-center text-center my-10 p-5 relative flex flex-col shadow-md">
     <button class="text-center flex flex-col justify-center items-center">
     <div class="absolute top-1/3 font-bold invisible group-hover:visible text-white z-10 text-xl">Add to 🛒</div>
     
-        <img src="{image}" alt="" class="bg-[#344055] object-fit rounded-md group-hover:brightness-50 mb-5">
+        <img src="https://picsum.photos/300" alt="" class="bg-[#344055] object-fit rounded-md group-hover:brightness-50 mb-5">
     </button>
     <div class="text-black font-bold"><b>{name}</b> • ${price}</div>
     <!-- <div class="font-bold text-black">${price}</div> -->

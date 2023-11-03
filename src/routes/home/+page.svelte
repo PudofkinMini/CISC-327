@@ -2,9 +2,41 @@
     import Navbar from "../../components/Navbar.svelte";
     import RestaurantFeedItem from "../../components/RestaurantFeedItem.svelte";
     import RestaurantFeed from "../../components/RestaurantFeed.svelte";
+    import { userid } from "/src/store.js";
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        
+        const unsubscribe = userid.subscribe((value) => {
+            console.log(value);
+            if (value == 0) {
+                window.location.href = '/'
+            }
+        });
+
+        const clearStorage = () => {
+            localStorage.clear();
+        };
+
+        window.addEventListener('beforeunload', clearStorage);
+
+        // Cleanup the event listener when the component is destroyed
+        return () => {
+            window.removeEventListener('beforeunload', clearStorage);
+        };
+
+
+        
+
+
+    })
+
+    // Search filters
     let searchValue = ""
     let categoryValue = "Any"
     let priceValue = "Any"
+
+    
 
     const searchBtnHandler = () => {
         console.log(searchValue)
@@ -16,9 +48,10 @@
     // Here we load all of the categories available for the filter
 
     // Here we load all of the restaurants for each of the filtered categories
-    let categoriesList = ["Italian", "Chinese", "Indian", 
-                          "Mexican", "Sushi", "Korean", "Caribbean",
-                          "Fast Food", "Comfort Food"]
+    let categoriesList = ["Fast Food", "Comfort", "Chinese", 
+                          "Indian", "Italian", "French", 
+                          "Vegetarian"]
+                         
 
 </script>
 
@@ -31,15 +64,13 @@
         <div class="text-2xl font-bold">Category:</div>
         <select bind:value={categoryValue} name="categories" id="" placeholder="Category" class="text-left w-fit h-16 px-5 hover:shadow-lg text-2xl rounded-md shadow-md">
             <option value="Any" class="text-xl"></option>
-            <option value="Italian" class="text-xl">Italian</option>
+            <option value="Fast Food" class="text-xl">Fast Food</option>
+            <option value="Comfort" class="text-xl">Comfort</option>
             <option value="Chinese" class="text-xl">Chinese</option>
             <option value="Indian" class="text-xl">Indian</option>
-            <option value="Mexican" class="text-xl">Mexican</option>
-            <option value="Sushi" class="text-xl">Sushi</option>
-            <option value="Korean" class="text-xl">Korean</option>
-            <option value="Caribbean" class="text-xl">Caribbean</option>
-            <option value="Fast Food" class="text-xl">Fast Food</option>
-            <option value="Comfort Food" class="text-xl">Comfort Food</option>
+            <option value="Italian" class="text-xl">Italian</option>
+            <option value="French" class="text-xl">French</option>
+            <option value="Vegetarian" class="text-xl">Vegetarian</option>
         </select>
         <div class="text-2xl font-bold ml-10">Price:</div>
         <select bind:value={priceValue} name="price" id="" placeholder="Price" class="text-left w-fit h-16 px-5 text-2xl rounded-md shadow-md hover:shadow-lg">

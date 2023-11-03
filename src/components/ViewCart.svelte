@@ -1,4 +1,6 @@
 <script>
+    import { orders, userid } from "/src/store.js"
+
     export let cart;
     export let itemCount;
     export let className;
@@ -10,13 +12,19 @@
     }
     console.log(totalPrice)
 
-    
-
+    const checkOutHandler = () => {
+        //orders.set(cart)
+        //userid.set(0)
+        window.location.href = "/place_order"
+    }
 </script>
 
 
 <div class={className}>
     <div class="text-3xl">Cart Items</div>
+    {#if cart.length > 0}
+    <button on:click={checkOutHandler} class="bg-black rounded-md px-5 py-2 mt-5 w-full">Check Out</button>
+    {/if}
     <div class="flex flex-col text-left p-5 overflow-y-scroll text-white divide-y">
         {#each cart as item}
             <div class="flex flex-row">
@@ -24,20 +32,33 @@
                 <button class="ml-auto text-red-400" 
                 on:click={() => { 
                     for (let i=0; i < cart.length; i++) {
-                        if (cart[i].cartID=== item.cartID) {
+                        if (cart[i].id === item.id) {
                             cart.splice(i, 1)
                             itemCount = cart.length;
+
+                            // Remove item from cart in db
+                            let xhr = new XMLHttpRequest();
+                            xhr.open('GET', `http://127.0.0.1:8000/removeFromCart/${item.id}`, false); // false makes it synchronous
+                            xhr.send();
+                            if (xhr.status === 200) {
+                                //console.log('removed from cart:', JSON.parse(xhr.responseText));
+                                //let results = JSON.parse(xhr.responseText)
+                            } else {
+                                console.log('Failed to fetch:', xhr.status);
+                            }
+
                             break;
                         }
                         // console.log()
                     }
-
-
                 }}>Remove</button>
             </div>
         {/each}  
         <div class="">Sub-Total: ${Math.round(totalPrice * 100)/100}</div>
     </div>
+    {#if cart.length > 9}
+    <button on:click={checkOutHandler} class="bg-black rounded-md px-5 py-2 mt-5 w-full">Check Out</button>
+    {/if}
 </div>
 
 

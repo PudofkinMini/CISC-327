@@ -1,32 +1,31 @@
 <script>
     import RestaurantFeedItem from "./RestaurantFeedItem.svelte";
+    import { onMount } from 'svelte';
     export let category;
     export let price;
     export let nameFilter;
 
     let c = 0;
     let restaurantFeeds = [];
-    // Here we would send an http request to backend to properly fill this category
-    //
-    //
-    //
+    //Here we would send an http request to backend to properly fill this category
+    
+    async function loadRestaurants() {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', `http://127.0.0.1:8000/loadRestaurants/${category}`, false); // false makes it synchronous
+        xhr.send();
 
-    // But for the front-end prototype:
-    for (let i=0; i < 20; i++) {
-        let newRestaurantFeedItem = {category: category, nameID: i};
-        // newRestaurantFeedItem.category = category;
-        // newRestaurantFeedItem.name = i;
-        if (i < 3) {
-            newRestaurantFeedItem.price = "$";
+        if (xhr.status === 200) {
+            console.log('Data received:', JSON.parse(xhr.responseText));
+            restaurantFeeds = JSON.parse(xhr.responseText);
+        } else {
+            console.log('Failed to fetch:', xhr.status);
         }
-        else if (i < 7) {
-            newRestaurantFeedItem.price = "$$";
-        }
-        else {
-            newRestaurantFeedItem.price = "$$$";
-        }
-         restaurantFeeds.push(newRestaurantFeedItem);
     }
+    onMount(loadRestaurants);
+    
+
+    
+    
 </script>
 <div class="w-[100vw] h-[60vh] shadow-md my-6  px-3 overflow-none bg-gradient-to-b from-white to-gray-100">
     <span class="text-3xl font-bold px-8 py-4 rounded-md text-center">{category}</span>
@@ -34,7 +33,7 @@
         <!-- <button class="w-16 bg-[#888098] text-4xl px-4 rounded-md absolute left-0 h-full z-10 opacity-80"> ⇦ </button> -->
         {#each restaurantFeeds as item}
             {#if (price == "Any" || item.price == price)}  
-            <RestaurantFeedItem category={item.category} price={item.price} name="{item.category} Restaurant {item.nameID}" image="https://picsum.photos/300"></RestaurantFeedItem>
+            <RestaurantFeedItem id={item.id} category={item.category} price={item.price} name="{item.name}" image="https://picsum.photos/300"></RestaurantFeedItem>
             {/if}
         {/each}
         <!-- <button class="w-16 bg-[#888098] text-4xl absolute right-0 h-full opacity-80 hover:text-white"> ⇨ </button> -->
